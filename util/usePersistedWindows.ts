@@ -67,7 +67,7 @@ const usePersistedWindows = () => {
     // persist windowStore to search params
     useEffect(() => {
         const url = new URL(window.location.toString())
-        url.searchParams.forEach((val, key) => url.searchParams.delete(key))
+        url.searchParams.forEach((_val, key) => url.searchParams.delete(key))
         Object.entries(windows).forEach(([key, val]) =>
             url.searchParams.set(key, val)
         )
