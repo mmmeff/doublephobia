@@ -1,42 +1,20 @@
-# Hello World example
+# doublephobia
 
-## How to use
+Demo: [https://doublephobia.vercel.app/](https://doublephobia.vercel.app/)
 
-### Using `create-next-app`
+---
 
-Execute [`create-next-app`](https://github.com/segmentio/create-next-app) with [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) or [npx](https://github.com/zkat/npx#readme) to bootstrap the example:
+Compares multiple bundlephobia.com pages side by side. Supports link sharing.
 
-```bash
-npx create-next-app --example hello-world hello-world-app
-# or
-yarn create next-app --example hello-world hello-world-app
-```
+### TODO
 
-### Download manually
+-   [] copy link to clipboard
+-   [] n window support
+-   [] styling spit shine
 
-Download the example:
+---
 
-```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/hello-world
-cd hello-world
-```
+### Contributing
 
-Install it and run:
-
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
-
-Deploy it to the cloud with [now](https://zeit.co/now) ([download](https://zeit.co/download))
-
-```bash
-now
-```
-
-## The idea behind the example
-
-This example shows the most basic idea behind Next. We have 2 pages: `pages/index.js` and `pages/about.js`. The former responds to `/` requests and the latter to `/about`. Using `next/link` you can add hyperlinks between them with universal routing capabilities. The `day` directory shows that you can have subdirectories.
+-   `yarn`
+-   `yarn dev`
