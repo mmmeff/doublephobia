@@ -11,6 +11,8 @@ export default function IndexPage() {
                 style={{
                     height: '100vh',
                     whiteSpace: 'nowrap',
+                    display: 'flex',
+                    overflow: 'visible',
                 }}
             >
                 {Object.entries(windows).map(([id, module]) => (
@@ -33,9 +35,14 @@ export default function IndexPage() {
                     <button
                         title="add new window"
                         style={{ fontSize: 'inherit' }}
-                        onClick={() => add()}
+                        onClick={() => {
+                            add()
+                            setTimeout(() => {
+                                window.scrollTo(9000, 0)
+                            }, 100)
+                        }}
                     >
-                        🆕
+                        ➕
                     </button>
                     <button
                         style={{ fontSize: 'inherit' }}
@@ -46,6 +53,17 @@ export default function IndexPage() {
                     >
                         📋
                     </button>
+                    <a
+                        href="https://github.com/mmmeff/doublephobia//"
+                        target="_blank"
+                    >
+                        <button
+                            style={{ fontSize: 'inherit' }}
+                            title="More info @ Github"
+                        >
+                            ℹ️
+                        </button>
+                    </a>
                 </div>
             </div>
             <style global jsx>{`
@@ -59,6 +77,13 @@ export default function IndexPage() {
                 *:before,
                 *:after {
                     box-sizing: border-box;
+                }
+                button {
+                    border: none;
+                    outline: none;
+                    margin: 2px;
+                    border: 1px solid #7a7a7a;
+                    cursor: pointer;
                 }
             `}</style>
         </div>

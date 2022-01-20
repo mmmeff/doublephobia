@@ -34,16 +34,23 @@ const Window = ({ id, module, onChange, onRemove }: WindowProps) => {
                 position: 'relative',
                 display: 'inline-grid',
                 gridTemplateRows: '3rem 1fr',
-                minWidth: 420,
                 height: '100%',
-                // width: '100%',
+                width: '50%',
+                minWidth: 420,
             }}
         >
             <input
                 type="text"
                 value={module}
                 onChange={(e) => onChange(e.target.value)}
-                style={{ width: '100%' }}
+                placeholder="module@1.0.0"
+                style={{
+                    width: '100%',
+                    height: 'auto',
+                    paddingLeft: '1rem',
+                    boxShadow: 'none',
+                    border: '1px solid #7a7a7a',
+                }}
             />
             <iframe
                 title={`Bundlephobia ${id}: ${module}`}
@@ -52,10 +59,11 @@ const Window = ({ id, module, onChange, onRemove }: WindowProps) => {
             />
             <button
                 onClick={onRemove}
+                title="delete window"
                 style={{
                     position: 'absolute',
                     top: 4,
-                    right: 4,
+                    right: 6,
                     fontSize: '1.5rem',
                 }}
             >

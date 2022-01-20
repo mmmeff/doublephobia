@@ -3,11 +3,14 @@ import type { ID, Module } from './types'
 import { useState, useEffect, useCallback } from 'react'
 import produce from 'immer'
 import { useRouter } from 'next/router'
+import { nanoid } from 'nanoid'
+
+const id = () => nanoid(6)
 
 type WindowStore = Record<ID, Module>
 const DEFAULTS: WindowStore = {
-    '0': 'react@16',
-    '1': 'react@17',
+    [id()]: 'react@16',
+    [id()]: 'react@17',
 }
 
 const usePersistedWindows = () => {
@@ -31,12 +34,6 @@ const usePersistedWindows = () => {
                 produce(windows, (draft) => {
                     // remove the entry
                     delete draft[id]
-                    // re-index remaining entries
-                    const result: WindowStore = {}
-                    Object.entries(draft).forEach(([, value], i) => {
-                        result[i.toString()] = value
-                    })
-                    draft = result
                 })
             )
         },
@@ -46,8 +43,7 @@ const usePersistedWindows = () => {
     const add = useCallback(() => {
         setWindows(
             produce(windows, (draft) => {
-                draft[Object.entries(draft).length.toString()] =
-                    'left-pad@latest'
+                draft[id()] = 'left-pad@latest'
             })
         )
     }, [windows])
@@ -61,17 +57,20 @@ const usePersistedWindows = () => {
                 }
             )
         })
-        setWindows(Object.entries(newStore).length > 1 ? newStore : DEFAULTS)
+        setWindows(Object.entries(newStore).length > 0 ? newStore : DEFAULTS)
     }, [])
 
     // persist windowStore to search params
     useEffect(() => {
-        const url = new URL(window.location.toString())
-        url.searchParams.forEach((_val, key) => url.searchParams.delete(key))
+        if (!Object.keys(windows).length) return
+
+        const url = new URL(window.location.toString().split('?')[0])
         Object.entries(windows).forEach(([key, val]) =>
             url.searchParams.set(key, val)
         )
-        router.replace(url)
+        const goto = url.pathname + url.search
+        console.log('goto', goto)
+        router.replace(url.pathname + url.search)
     }, [windows])
 
     return { windows, update, remove, add }
