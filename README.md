@@ -8,9 +8,9 @@ Compares multiple bundlephobia.com pages side by side. Supports link sharing.
 
 ### TODO
 
-- [ ] copy link to clipboard
-- [x] n window support
-- [ ] styling spit shine
+-   [x] copy link to clipboard
+-   [x] n window support
+-   [ ] styling spit shine
 
 ---
 

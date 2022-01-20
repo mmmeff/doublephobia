@@ -22,8 +22,7 @@ export default function IndexPage() {
                         onRemove={() => remove(id)}
                     />
                 ))}
-                <button
-                    onClick={() => add()}
+                <div
                     style={{
                         position: 'fixed',
                         bottom: 4,
@@ -31,8 +30,23 @@ export default function IndexPage() {
                         fontSize: '2rem',
                     }}
                 >
-                    🆕
-                </button>
+                    <button
+                        title="add new window"
+                        style={{ fontSize: 'inherit' }}
+                        onClick={() => add()}
+                    >
+                        🆕
+                    </button>
+                    <button
+                        style={{ fontSize: 'inherit' }}
+                        title="copy URL to clipboard"
+                        onClick={() => {
+                            navigator.clipboard.writeText(window.location.href)
+                        }}
+                    >
+                        📋
+                    </button>
+                </div>
             </div>
             <style global jsx>{`
                 body,
