@@ -1,8 +1,10 @@
-const makeBundlephobiaUrl = (module: string) => {
-  if (/^@?.+@?.+$/.test(module) === false)
-    throw new Error("invalid module format: " + module);
+const makeBundlephobiaUrl = (module?: string) => {
+    if (!module) return undefined
 
-  return `https://bundlephobia.com/package/${module}`;
-};
+    if (/^@?.+@?.+$/.test(module) === false)
+        console.error('invalid module format: ' + module)
 
-export default makeBundlephobiaUrl;
+    return `https://bundlephobia.com/package/${module}`
+}
+
+export default makeBundlephobiaUrl

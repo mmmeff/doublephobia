@@ -218,6 +218,11 @@ loader-utils@1.2.3:
     emojis-list "^2.0.0"
     json5 "^1.0.1"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 loose-envify@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
@@ -287,6 +292,11 @@ postcss@8.2.15:
     colorette "^1.2.2"
     nanoid "^3.1.23"
     source-map "^0.6.1"
+
+prettier@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
+  integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
 
 react-dom@17.x:
   version "17.0.2"
@@ -412,6 +422,19 @@ typescript@4.x:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.4.tgz#a17d3a0263bf5c8723b9c52f43c5084edf13c2e8"
   integrity sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==
+
+use-debounce@^3.3.0:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-3.4.3.tgz#5df9322322b3f1b1c263d46413f9facf6d8b56ab"
+  integrity sha512-nxy+opOxDccWfhMl36J5BSCTpvcj89iaQk2OZWLAtBJQj7ISCtx1gh+rFbdjGfMl6vtCZf6gke/kYvrkVfHMoA==
+
+use-debounced-effect-hook@^1.1.62:
+  version "1.1.62"
+  resolved "https://registry.yarnpkg.com/use-debounced-effect-hook/-/use-debounced-effect-hook-1.1.62.tgz#909648550c69fc88026c18bcd3ea211123541ba7"
+  integrity sha512-DDkGKEqV7bMAdgW/KC3T4CibQgp3sQ+1OligFwqLb2OYw3qWuxURSLHDYe0CNlLeW2CHBoLNksPk3sRL50/50g==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    use-debounce "^3.3.0"
 
 use-subscription@1.5.1:
   version "1.5.1"
