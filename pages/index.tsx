@@ -1,18 +1,38 @@
 import Window from '../components/Window'
+import usePersistedWindows from '../util/usePersistedWindows'
 
 export default function IndexPage() {
+    const { windows, update, remove, add } = usePersistedWindows()
+
     return (
         <div>
             <div
                 className="frame"
                 style={{
                     height: '100vh',
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
+                    whiteSpace: 'nowrap',
                 }}
             >
-                <Window side="left" initialModule="react@latest" />
-                <Window side="right" initialModule="vue@latest" />
+                {Object.entries(windows).map(([id, module]) => (
+                    <Window
+                        key={id}
+                        id={id}
+                        module={module}
+                        onChange={(change) => update(id, change)}
+                        onRemove={() => remove(id)}
+                    />
+                ))}
+                <button
+                    onClick={() => add()}
+                    style={{
+                        position: 'fixed',
+                        bottom: 4,
+                        right: 4,
+                        fontSize: '2rem',
+                    }}
+                >
+                    🆕
+                </button>
             </div>
             <style global jsx>{`
                 body,

@@ -1,66 +1,66 @@
-import type { ChangeEvent } from 'react'
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import type { ID, Module } from '../util/types'
+
+import { useState } from 'react'
 import useDebouncedEffect from 'use-debounced-effect-hook'
 
 import makeBundlephobiaUrl from '../util/makeBundlephobiaUrl'
+import { isValidModule } from '../util/isValidModule'
 
-interface WindowProps {
-    side: 'left' | 'right'
-    initialModule: string
+export interface WindowProps {
+    id: ID
+    module: Module
+    onChange: (module: string) => void
+    onRemove: () => void
 }
-const Window = ({ side, initialModule }: WindowProps) => {
-    const router = useRouter()
-    const [module, setModule] = useState<string | undefined>()
-    const [src, setSrc] = useState<string | undefined>(
-        makeBundlephobiaUrl(initialModule)
+const Window = ({ id, module, onChange, onRemove }: WindowProps) => {
+    const [lastGoodSrc, setLastGoodSrc] = useState<string | undefined>(
+        isValidModule(module) ? makeBundlephobiaUrl(module) : undefined
     )
-
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setModule(e.target.value)
-    }
 
     useDebouncedEffect(
         () => {
-            if (!module) return
+            if (!isValidModule(module)) return
 
-            setSrc(makeBundlephobiaUrl(module))
-            const url = new URL(window.location.toString())
-            url.searchParams.set(side, module)
-            router.replace(url)
+            setLastGoodSrc(makeBundlephobiaUrl(module))
         },
-        [module, side],
-        5000
+        [module],
+        800
     )
-
-    // on load, set module
-    useEffect(() => {
-        const sideParam = new URL(window.location.toString()).searchParams.get(
-            side
-        )
-        setModule(sideParam ?? initialModule)
-    }, [])
 
     return (
         <div
             className="window"
             style={{
                 position: 'relative',
-                display: 'grid',
+                display: 'inline-grid',
                 gridTemplateRows: '3rem 1fr',
+                minWidth: 420,
+                height: '100%',
+                // width: '100%',
             }}
         >
             <input
                 type="text"
                 value={module}
-                onChange={onChange}
+                onChange={(e) => onChange(e.target.value)}
                 style={{ width: '100%' }}
             />
             <iframe
-                title={`Bundlephobia (${side})`}
-                src={src}
+                title={`Bundlephobia ${id}: ${module}`}
+                src={lastGoodSrc}
                 style={{ width: '100%', height: '100%' }}
             />
+            <button
+                onClick={onRemove}
+                style={{
+                    position: 'absolute',
+                    top: 4,
+                    right: 4,
+                    fontSize: '1.5rem',
+                }}
+            >
+                ❌
+            </button>
         </div>
     )
 }
