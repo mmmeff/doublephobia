@@ -56,6 +56,7 @@ export default function IndexPage() {
                     <a
                         href="https://github.com/mmmeff/doublephobia//"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         <button
                             style={{ fontSize: 'inherit' }}
